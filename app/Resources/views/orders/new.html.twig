@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-5">
+                {{ form_start(orderForm) }}
+                {{ form_row(orderForm.customer.name) }}
+                {{ form_row(orderForm.customer.surname) }}
+                {{ form_row(orderForm.customer.email) }}
+                {{ form_row(orderForm.customer.country) }}
+                {{ form_row(orderForm.customer.city) }}
+                {{ form_row(orderForm.customer.address) }}
+                {{ form_row(orderForm.customer.phoneNumber) }}
+                {{ form_row(orderForm.quantity) }}
+                {{ form_row(orderForm.totalPrice) }}
+                {% do orderForm.date.setRendered %}
+                <button type="submit" class="btn" formnovalidate>Save</button>
+                {{ form_end(orderForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+var quantityid = "{{ orderForm.quantity.vars.id }}";
+document.getElementById(quantityid).oninput = function () {
+    var quant = Number(document.getElementById(quantityid).value);
+    var price = quant*{{ price }};
+    console.log(price);
+    document.getElementById("{{ orderForm.totalPrice.vars.id }}").value = Number(price).toFixed(2);
+
+}
+</script>
+{% endblock %}
