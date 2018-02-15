@@ -29,7 +29,8 @@ class Orders
     private $id;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\Type(type="AppBundle\Entity\Customer")
+     * @Assert\Valid()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -42,6 +43,7 @@ class Orders
 
     /**
      * @Assert\NotBlank()
+     * @Assert\Range(min=0, minMessage="Turi būti teigiamas skaičius")
      * @ORM\Column(type="integer")
      */
     private $quantity;

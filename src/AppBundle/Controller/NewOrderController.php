@@ -70,14 +70,14 @@ class NewOrderController extends Controller
                 'surname' => $order['surname'],
                 'date' => $order['date']->format('Y-m-d'),
                 'quantity' => $order['quantity'],
-                'total' => $order['total_price'],
+                'total' => $order['totalPrice'],
             ];
         }
         return new JsonResponse($orderList);
     }
 
     /**
-     * @Route("orders/list", name="orders_list")
+     * @Route("/orders/list", name="orders_list")
      */
     public function listAction()
     {
@@ -92,6 +92,21 @@ class NewOrderController extends Controller
         return $this->render('orders/list.html.twig', [
             'keys' => $keys
         ]);
+    }
+
+    /**
+     * @Route("/order/info/{orderId}", name="order_info")
+     */
+    public function showAction($orderId)
+    {
+        $getOrder = $this->getDoctrine()
+            ->getRepository('AppBundle:Orders')
+            ->findOneWithCustomerById($orderId);
+
+        return $this->render('orders/info.html.twig', [
+            'orderInfo' => $getOrder[0]
+        ]);
+
     }
 }
 

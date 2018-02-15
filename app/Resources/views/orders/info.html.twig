@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <dd>{{ orderInfo.address }}</dd>
+    <dd>{{ orderInfo.city }}</dd>
+    <dd>{{ orderInfo.countryName }}</dd>
+    <dd>{{ orderInfo.phoneNumber }}</dd>
+    <dd>{{ orderInfo.name }}</dd>
+    <dd>{{ orderInfo.surname }}</dd>
+    <dd>{{ orderInfo.date|date('Y-m-d') }}</dd>
+    <dd>{{ orderInfo.quantity }}</dd>
+    <dd>{{ orderInfo.totalPrice }}</dd>
+
+
+{% endblock %}

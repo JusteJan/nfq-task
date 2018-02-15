@@ -9,7 +9,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -49,7 +48,7 @@ class Customer
 
     /**
      * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\Email(message="Įvestas netaisyklingas elektroninio pašto adresas.")
      * @ORM\Column(type="string")
      */
     private $email;
