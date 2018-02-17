@@ -3,7 +3,7 @@
 **Pasirinkta užduotis Nr. 1**
 [Užduoties puslapis][1]
 
-Užduotį atliko Justina Jankauskaitė
+Užduotį atliko Justina Jankauskaitė.
 
 Duomenys į duomenų lenteles gali būti sukeliami
 migracijos metu: `doctrine:migrations:migrate`,
