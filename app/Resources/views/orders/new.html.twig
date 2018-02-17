@@ -1,25 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-5">
-                {{ form_start(orderForm) }}
-                {{ form_row(orderForm.customer.name, {'label': 'Vardas'}) }}
-                {{ form_row(orderForm.customer.surname, {'label': 'Pavardė'}) }}
-                {{ form_row(orderForm.customer.email, {'label': 'Elektroninis paštas'}) }}
-                {{ form_row(orderForm.customer.country, {'label': 'Šalis'}) }}
-                {{ form_row(orderForm.customer.city, {'label': 'Miestas'}) }}
-                {{ form_row(orderForm.customer.address, {'label': 'Adresas'}) }}
-                {{ form_row(orderForm.customer.phoneNumber, {'label': 'Telefono numeris'}) }}
-                {{ form_row(orderForm.quantity, {'label': 'Kiekis'}) }}
-                {{ form_row(orderForm.totalPrice, {'label': 'Galutinė kaina'}) }}
-                {% do orderForm.date.setRendered %}
-                <button type="submit" class="btn" formnovalidate>Save</button>
-                {{ form_end(orderForm) }}
-            </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-sm-6 offset-1">
+            {{ form_start(orderForm) }}
+            {{ form_row(orderForm.customer.name, {'label': 'Vardas'}) }}
+            {{ form_row(orderForm.customer.surname, {'label': 'Pavardė'}) }}
+            {{ form_row(orderForm.customer.email, {'label': 'Elektroninis paštas'}) }}
+            {{ form_row(orderForm.customer.country, {'label': 'Šalis'}) }}
+            {{ form_row(orderForm.customer.city, {'label': 'Miestas'}) }}
+            {{ form_row(orderForm.customer.address, {'label': 'Adresas'}) }}
+            {{ form_row(orderForm.customer.phoneNumber, {'label': 'Telefono numeris'}) }}
+            {{ form_row(orderForm.quantity, {'label': 'Kiekis'}) }}
+            {{ form_row(orderForm.totalPrice, {'label': 'Suma, €'}) }}
+            {% do orderForm.date.setRendered %}
+            <button type="submit" class="btn btn-info" formnovalidate>Pateikti užsakymą</button>
+            {{ form_end(orderForm) }}
         </div>
     </div>
+
 
 {% endblock %}
 

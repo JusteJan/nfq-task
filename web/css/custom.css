@@ -1,0 +1,51 @@
+.nav-color {
+    background-color: #e5f2f4;
+}
+
+nav a{
+    color: #343a40;
+}
+
+nav a:hover {
+    color: #828a90;
+}
+
+.table.vertical-align > tbody > tr > th, td {
+    vertical-align: middle;
+}
+
+.page-item.active .page-link {
+    background-color: #17a2b8;
+    border: #000000;
+}
+
+.page-item .page-link {
+    color: #000000;
+    border-color: #dee2e6;
+}
+
+.btn-info:focus,
+.btn-info:active,
+.page-link,
+.form-control {
+    box-shadow:none !important;
+    outline:0px !important;
+}
+
+.form-control:focus {
+    border-color: #17A2B8;
+}
+
+.table .order-info > tbody > tr > th, td > a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.table .order-info > tbody > tr > th, td > a:hover {
+    color: #17a2b8;
+}
+
+.table-borderless th,
+.table-borderless td {
+    border: 0;
+}

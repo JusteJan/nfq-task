@@ -1,36 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <form>
-    <select name="Rodyti: " id="showPerPage" onchange=getPerPage()>
-        {% for age in range(10, 100, 15) %}
-            <option value="{{ age }}">{{ age }}</option>
-        {% endfor %}
-    </select>
-    </form>
-    <select name="Rikiuoti pagal: ", id="chooseSorting">
-        {% for key, value in keys %}
-        <option value="{{ value }}">{{ key }}</option>
-        {% endfor %}
-    </select>
-    <select name="Ieškoti pagal: ", id="chooseFiltering">
-        {% for key, value in keys %}
-            <option value="{{ value }}">{{ key }}</option>
-        {% endfor %}
-    </select>
-    <input type="text" name="search" id="filter">
-    <button type="button" id="toggleFiltering">Ieškoti</button>
-    <button type="button" id="resetFiltering">Valyti rezultatus</button>
-
-    <div id="app"></div>
+    <div class="col-sm-10 offset-sm-2 mt-3">
+        <div class="row">
+            <div class="col-sm-5 form-group form-inline input-group-sm">
+                <label for="perPage" class="mr-2">Rodyti:</label>
+                <select name="perPage" class="form-control col-sm-2" id="showPerPage">
+                    {% for perpage in range(10, 100, 15) %}
+                        <option value="{{ perpage }}">{{ perpage }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-5 form-group form-inline input-group-sm">
+                <label for="sortBy" class="mr-2">Rikiuoti pagal stulpelį:</label>
+                <select name="sortBy" class="form-control" id="chooseSorting">
+                    {% for key, value in keys %}
+                    <option value="{{ value }}">{{ key }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 form-group form-inline input-group-sm">
+                <label for="searchBy" class="mr-2">Ieškoti pagal stulpelį:</label>
+                <select name="searchBy" class="form-control" id="chooseFiltering">
+                    {% for key, value in keys %}
+                        <option value="{{ value }}">{{ key }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group form-inline input-group-sm">
+                    <input type="text" name="search" class="form-control" id="filter">
+                    <button type="button" class="btn btn-info btn-sm mx-1" id="toggleFiltering">Ieškoti</button>
+                    <button type="button" class="btn btn-info btn-sm" id="resetFiltering">Valyti rezultatus</button>
+                </div>
+            </div>
+        </div>
+        <div id="app"></div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-    <script src="https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 

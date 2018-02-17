@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="country", options={"charset":"utf8mb4"})
+ * @ORM\Table(name="country")
  */
 
 class Country

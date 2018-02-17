@@ -5,14 +5,14 @@ class BigTable extends React.Component {
             perPage: 10,
             showPage:1,
             pagesList:[],
-            sortingKey:'id',
-            filterKey: 'id',
+            sortingKey:"id",
+            filterKey: "id",
             filteredData: []};
             this.handleClick = this.handleClick.bind(this);
         }
 
     getPerPage() {
-        document.getElementById("showPerPage").oninput = function () {
+        document.getElementById("showPerPage").onchange = function () {
             this.setState({perPage: document.getElementById("showPerPage").value, showPage:1});
             this.getPagesArray();
         }.bind(this);
@@ -32,14 +32,14 @@ class BigTable extends React.Component {
     }
 
     sortData(data) {
-        var strings = ['name', 'surname', 'address'];
+        var strings = ["name", "surname", "address"];
         return data.sort( function(a, b) {
             var x = a[this.state.sortingKey];
             var y = b[this.state.sortingKey];
             if (strings.indexOf(this.state.sortingKey) > -1 && strings.indexOf(this.state.sortingKey) > -1) {
-                return x.localeCompare(y, 'lt')
+                return x.localeCompare(y, "lt")
             }
-            if (this.state.sortingKey == 'date') {
+            if (this.state.sortingKey == "date") {
                 if (x < y) return 1;
                 if (x > y) return -1;
             }
@@ -53,14 +53,14 @@ class BigTable extends React.Component {
         var filterText = "";
         document.getElementById("resetFiltering").onclick = function() {
             this.setState({filteredData:this.sortData(this.state.data), showPage:1});
+            document.getElementById("filter").value=null;
             this.getPagesArray();
             filterText = "";
         }.bind(this);
         document.getElementById("toggleFiltering").onclick = function () {
-            filterText = document.getElementById("filter").value;
+            filterText = document.getElementById("filter").value.toUpperCase();
             var filtered = this.sortData(this.state.data).filter(function (n) {
-                console.log(n[this.state.filterKey].toString().includes(filterText));
-                return n[this.state.filterKey].toString().indexOf(filterText) > -1;
+                return n[this.state.filterKey].toString().toUpperCase().indexOf(filterText) > -1;
             }.bind(this));
             this.setState({filteredData: filtered, showPage:1});
             this.getPagesArray();
@@ -94,19 +94,19 @@ class BigTable extends React.Component {
                 this.setState({data: response.data, filteredData:response.data});
                 this.getPagesArray();
             }.bind(this));
+        this.getPerPage();
         this.getSortingKey();
         this.getFilterKey();
         this.getFilteredData();
-        this.getPerPage();
     }
 
     renderPagination() {
         return (
-            <ul className="pagination">
+            <ul className="pagination pagination-sm">
                 {this.state.pagesList.map((page) => {
                 return(
-                    <li key={page}><a href="#" id={page} onClick={this.handleClick}>{page}</a>
-
+                    <li key={page} className={this.state.showPage == page ? "active page-item bg-info" : "page-item bg-info"}>
+                        <a href="#" id={page} onClick={this.handleClick} className={"page-link"}>{page}</a>
                     </li>
                     );})}
             </ul>
@@ -115,48 +115,53 @@ class BigTable extends React.Component {
 
     renderTable() {
         return (
-            <table className="table table-bordered table-responsive table-striped">
-                <tr>
-                    <th>Užsakymo numeris</th>
-                    <th>Užsakovo vardas</th>
-                    <th>Užsakovo pavardė</th>
-                    <th>Užsakymo data</th>
-                    <th>Kiekis</th>
-                    <th>Galutinė kaina</th>
-                </tr>
+            <table className="table table-responsive table-striped vertical-align order-info">
+                <thead className="text-center">
+                    <tr>
+                        <th className="align-middle">Užsakymo nr.</th>
+                        <th className="align-middle">Užsakovo vardas</th>
+                        <th className="align-middle">Užsakovo pavardė</th>
+                        <th className="align-middle">Užsakymo data</th>
+                        <th className="align-middle">Kiekis</th>
+                        <th className="align-middle">Suma, €</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {this.getPageData().map((data) => {
                     return(
                         <tr>
-                            <td><a href={"/order/info/"+data['id'].toString()}>{data['id']}</a></td>
-                            <td>{data['name']}</td>
-                            <td>{data['surname']}</td>
-                            <td>{data['date']}</td>
-                            <td>{data['quantity']}</td>
-                            <td>{data['total']}</td>
+                            <td className="align-middle"><a href={"/order/info/"+data['id'].toString()}>{data['id']}</a></td>
+                            <td className="align-middle">{data['name']}</td>
+                            <td className="align-middle">{data['surname']}</td>
+                            <td className="align-middle">{data['date']}</td>
+                            <td className="text-center align-middle">{data['quantity']}</td>
+                            <td className="text-right align-middle">{data['total'].toFixed(2)}</td>
                     </tr>
                     );
                 })}
+                </tbody>
             </table>
         )
     }
 
+    render() {
+        return (
+            <div>
+                <div className="row">
+                    <div>
+                        {this.renderPagination()}
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        {this.renderTable()}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
-
-
-render() {
-    return (
-        <div>
-        <div>
-            {this.renderPagination()}
-        </div>
-        <div>
-            {this.renderTable()}
-        </div>
-        </div>
-    );
-}
-
-}
+    }
 
 window.BigTable = BigTable;
 

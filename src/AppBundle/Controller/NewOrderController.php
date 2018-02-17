@@ -33,11 +33,13 @@ class NewOrderController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $customerRepo = $em->getRepository('AppBundle:Customer');
+
+            //Jeigu užsakovas jau yra duomenų bazėje, jam nesukuriamas naujas įrašas 'customer'
+            //lentelėje
             if($customerRepo->findOneByOneCustomer($customer)) {
                 $order->setCustomer($customerRepo->findOneByOneCustomer($customer));
             }
             $order->setDate(new \DateTime());
-//            $order->setTotalPrice($order->getQuantity()*Orders::PRICE);
             $em->persist($order);
             $em->flush();
 
@@ -82,7 +84,7 @@ class NewOrderController extends Controller
     public function listAction()
     {
         $keys = [
-            'Užsakymo numeris' => 'id',
+            'Užsakymo nr.' => 'id',
             'Užsakovo vardas' => 'name',
             'Užsakovo pavardė' => 'surname',
             'Užsakymo data' => 'date',

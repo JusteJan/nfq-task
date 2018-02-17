@@ -12,7 +12,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Orders;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,7 +26,7 @@ class OrderType extends AbstractType
                 'disabled'=>true
             ])
             ->add('quantity')
-            ->add('totalPrice', MoneyType::class, [
+            ->add('totalPrice', NumberType::class, [
                 'attr' => ['readonly' => true]
         ]);
     }

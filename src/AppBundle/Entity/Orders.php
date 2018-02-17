@@ -53,79 +53,51 @@ class Orders
      */
     private $totalPrice;
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
-    /**
-     * @return Customer
-     */
     public function getCustomer()
     {
         return $this->customer;
     }
-
 
     public function setCustomer(Customer $customer)
     {
         $this->customer = $customer;
     }
 
-    /**
-     * @return mixed
-     */
     public function getDate()
     {
         return $this->date;
     }
 
-    /**
-     * @param mixed $date
-     */
     public function setDate($date)
     {
         $this->date = $date;
     }
 
-    /**
-     * @return mixed
-     */
     public function getQuantity()
     {
         return $this->quantity;
     }
 
-    /**
-     * @param mixed $quantity
-     */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
     }
 
-    /**
-     * @return mixed
-     */
     public function getTotalPrice()
     {
         return $this->totalPrice;
     }
 
-    /**
-     * @param mixed $totalPrice
-     */
     public function setTotalPrice($totalPrice)
     {
         $this->totalPrice = $totalPrice;

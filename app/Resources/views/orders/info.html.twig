@@ -1,15 +1,57 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <dd>{{ orderInfo.address }}</dd>
-    <dd>{{ orderInfo.city }}</dd>
-    <dd>{{ orderInfo.countryName }}</dd>
-    <dd>{{ orderInfo.phoneNumber }}</dd>
-    <dd>{{ orderInfo.name }}</dd>
-    <dd>{{ orderInfo.surname }}</dd>
-    <dd>{{ orderInfo.date|date('Y-m-d') }}</dd>
-    <dd>{{ orderInfo.quantity }}</dd>
-    <dd>{{ orderInfo.totalPrice }}</dd>
-
-
+    <div class = "col-sm-9">
+        <div class="row mt-3">
+            <div class="col-sm-1">
+                <a href="{{ path('orders_list') }}" class="btn btn-info btn-sm">Grįžti į sąrašą</a>
+            </div>
+            <div class="col-sm-7 offset-1">
+                <h3 class="h3">Užsakymas nr. {{ orderInfo.id }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 offset-1">
+                <table class="table table-responsive table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>Vardas:</th>
+                            <td>{{ orderInfo.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Pavardė:</th>
+                            <td>{{ orderInfo.surname }}</td>
+                        </tr>
+                        <tr>
+                            <th>Adresas:</th>
+                            <td>{{ orderInfo.address }}<br/>
+                                {{ orderInfo.city }}<br/>
+                                {{ orderInfo.countryName }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Telefono numeris:</th>
+                            <td>{{ orderInfo.phoneNumber }}</td>
+                        </tr>
+                        <tr>
+                            <th>Elektroninis paštas:</th>
+                            <td>{{ orderInfo.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Užsakymo data:</th>
+                            <td>{{ orderInfo.date|date('Y-m-d') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Kiekis:</th>
+                            <td>{{ orderInfo.quantity }}</td>
+                        </tr>
+                        <tr>
+                            <th>Galutinė kaina:</th>
+                            <td>{{ orderInfo.totalPrice ~ " €"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

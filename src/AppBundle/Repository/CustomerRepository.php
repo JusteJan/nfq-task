@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityRepository;
 
 class CustomerRepository extends EntityRepository
 {
+    //Ieško užsakovo
     public function findOneByOneCustomer(Customer $customer) {
         return $this->findOneBy([
             'name' => $customer->getName(),

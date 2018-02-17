@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityRepository;
 
 class OrderRepository extends EntityRepository
 {
+    //Randama visa informacija lentelei
     public function findAllTableInformation()
     {
         return $this->createQueryBuilder('orders')
@@ -25,6 +26,7 @@ class OrderRepository extends EntityRepository
 
     }
 
+    //Randama užsakymo informacija vienam užsakovui pagal jo id
     public function findOneWithCustomerById($orderId)
     {
         return $this->createQueryBuilder('orders')
