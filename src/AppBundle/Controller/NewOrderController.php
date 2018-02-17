@@ -97,7 +97,7 @@ class NewOrderController extends Controller
     }
 
     /**
-     * @Route("/order/info/{orderId}", name="order_info")
+     * @Route("/orders/info/{orderId}", name="order_info")
      */
     public function showAction($orderId)
     {
