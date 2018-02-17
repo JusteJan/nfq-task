@@ -25,13 +25,11 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-var quantityid = "{{ orderForm.quantity.vars.id }}";
-document.getElementById(quantityid).oninput = function () {
-    var quant = Number(document.getElementById(quantityid).value);
-    var price = quant*{{ price }};
-    console.log(price);
-    document.getElementById("{{ orderForm.totalPrice.vars.id }}").value = Number(price).toFixed(2);
-
-}
-</script>
+        var quantityid = "{{ orderForm.quantity.vars.id }}";
+        document.getElementById(quantityid).oninput = function () {
+            var quant = Number(document.getElementById(quantityid).value);
+            var price = quant*{{ price }};
+            document.getElementById("{{ orderForm.totalPrice.vars.id }}").value = Number(price).toFixed(2);
+        }
+    </script>
 {% endblock %}

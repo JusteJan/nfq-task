@@ -25,7 +25,8 @@ class CustomerType extends AbstractType
             ->add('surname')
             ->add('email')
             ->add('country', EntityType::class, [
-                'class' => Country::class])
+                'class' => Country::class,
+                'placeholder' => 'Pasirinkite šalį'])
             ->add('city')
             ->add('address')
             ->add('phoneNumber');

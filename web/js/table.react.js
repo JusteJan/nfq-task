@@ -1,4 +1,4 @@
-class BigTable extends React.Component {
+class Table extends React.Component {
     constructor(props) {
         super(props);
             this.state = {data: [],
@@ -49,14 +49,18 @@ class BigTable extends React.Component {
         }.bind(this));
     }
 
+    //Paspaudus "Ieškoti" ieško atitinkamų įrašų.
+    //"Enter" klavišo paspaudimas atitinka mygtuko "Ieškoti" paspaudimą.
     getFilteredData() {
         var filterText = "";
+
         document.getElementById("resetFiltering").onclick = function() {
             this.setState({filteredData:this.sortData(this.state.data), showPage:1});
             document.getElementById("filter").value=null;
             this.getPagesArray();
             filterText = "";
         }.bind(this);
+
         document.getElementById("toggleFiltering").onclick = function () {
             filterText = document.getElementById("filter").value.toUpperCase();
             var filtered = this.sortData(this.state.data).filter(function (n) {
@@ -65,6 +69,12 @@ class BigTable extends React.Component {
             this.setState({filteredData: filtered, showPage:1});
             this.getPagesArray();
         }.bind(this);
+
+        document.getElementById("filter").onkeyup = function () {
+            if (event.keyCode === 13) {
+                document.getElementById("toggleFiltering").click()
+            }
+        }
     }
 
     getPageData() {
@@ -105,7 +115,7 @@ class BigTable extends React.Component {
             <ul className="pagination pagination-sm">
                 {this.state.pagesList.map((page) => {
                 return(
-                    <li key={page} className={this.state.showPage == page ? "active page-item bg-info" : "page-item bg-info"}>
+                    <li key={page} className={this.state.showPage == page ? "active page-item" : "page-item"}>
                         <a href="#" id={page} onClick={this.handleClick} className={"page-link"}>{page}</a>
                     </li>
                     );})}
@@ -148,24 +158,14 @@ class BigTable extends React.Component {
         return (
             <div>
                 <div className="row">
-                    <div>
-                        {this.renderPagination()}
-                    </div>
+                    {this.renderPagination()}
                 </div>
                 <div>
-                    <div>
-                        {this.renderTable()}
-                    </div>
+                    {this.renderTable()}
                 </div>
             </div>
         );
     }
+}
 
-    }
-
-window.BigTable = BigTable;
-
-//ReactDOM.render(
-//<BigTable url={}/>,
-//    document.querySelector("#app")
-//);
+window.Table = Table;
