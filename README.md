@@ -1,4 +1,4 @@
-#Stojamosios užduoties į NFQ akademiją sprendimas#
+#Stojamosios užduoties į NFQ akademiją sprendimas
 
 **Pasirinkta užduotis Nr. 1**
 [Užduoties puslapis][1]
