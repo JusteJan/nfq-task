@@ -140,7 +140,7 @@ class Table extends React.Component {
                 {this.getPageData().map((data) => {
                     return(
                         <tr>
-                            <td className="align-middle"><a href={"/order/info/"+data['id'].toString()}>{data['id']}</a></td>
+                            <td className="align-middle"><a href={"/orders/info/"+data['id'].toString()}>{data['id']}</a></td>
                             <td className="align-middle">{data['name']}</td>
                             <td className="align-middle">{data['surname']}</td>
                             <td className="align-middle">{data['date']}</td>

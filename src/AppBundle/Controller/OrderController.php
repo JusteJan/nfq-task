@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class NewOrderController extends Controller
+class OrderController extends Controller
 {
     /**
      * @Route("/orders/new", name="orders_new")
