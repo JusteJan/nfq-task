@@ -78,7 +78,6 @@ class Table extends React.Component {
     }
 
     getPageData() {
-        console.log(this.getFilteredData());
         return this.state.filteredData.filter( function (n, ind) {
             return ind >= this.state.perPage*(this.state.showPage-1) && ind < this.state.perPage*this.state.showPage;
         }.bind(this));
@@ -100,7 +99,6 @@ class Table extends React.Component {
     componentDidMount() {
         axios.get(this.props.url)
             .then(function (response) {
-                console.log(response.data)
                 this.setState({data: response.data, filteredData:response.data});
                 this.getPagesArray();
             }.bind(this));
